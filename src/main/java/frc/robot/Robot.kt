@@ -1,8 +1,11 @@
 package frc.robot
 
+import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.TimedRobot
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
+import edu.wpi.first.wpilibj.Timer
+import edu.wpi.first.wpilibj.drive.DifferentialDrive
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax
 
 /**
  * The VM is configured to automatically run this object (which basically functions as a singleton class),
@@ -16,32 +19,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
  */
 object Robot : TimedRobot()
 {
-    private var selectedAutoMode = AutoMode.default
-    private val autoModeChooser = SendableChooser<AutoMode>().also { chooser ->
-        AutoMode.values().forEach { chooser.addOption(it.optionName, it) }
-        chooser.setDefaultOption(AutoMode.default.optionName, AutoMode.default)
-    }
 
-    /**
-     * A enumeration of the available autonomous modes.
-     *
-     * @param optionName The name for the [autoModeChooser] option.
-     * @param periodicFunction The function that is called in the [autonomousPeriodic] function each time it is called.
-     * @param autoInitFunction An optional function that is called in the [autonomousInit] function.
-     */
-    private enum class AutoMode(val optionName: String,
-                                val periodicFunction: () -> Unit,
-                                val autoInitFunction: () -> Unit = { /* No op by default */ } )
-    {
-        CUSTOM_AUTO_1("Custom Auto Mode 1", ::autoMode1),
-        CUSTOM_AUTO_2("Custom Auto Mode 2", ::autoMode2),
-        ;
-        companion object
-        {
-            /** The default auto mode. */
-            val default = CUSTOM_AUTO_1
-        }
-    }
+    // Initialize Drivetrain Motors
+    private val frontRightMotor: PWMSparkMax = PWMSparkMax(0)
+    private val frontLeftMotor: PWMSparkMax = PWMSparkMax(1)
+    private val rearRightMotor: PWMSparkMax = PWMSparkMax(2)
+    private val rearLeftMotor: PWMSparkMax = PWMSparkMax(3)
+
+
+    // Group Motors
+    private val rightMotorGroup = MotorControllerGroup(frontRightMotor, rearRightMotor)
+    private val leftMotorGroup = MotorControllerGroup(frontLeftMotor, rearLeftMotor)
+
+    // Initialize DifferentialDrive
+    private val diffDrive: DifferentialDrive = DifferentialDrive(rightMotorGroup, leftMotorGroup)
+
+    // Initialize the controller
+    private val controller: Joystick = Joystick(0)
+
+    // Create a new timer
+    private val timer: Timer = Timer()
+
 
     /**
      * This method is run when the robot is first started up and should be used for any
@@ -49,7 +47,7 @@ object Robot : TimedRobot()
      */
     override fun robotInit()
     {
-        SmartDashboard.putData("Auto choices", autoModeChooser)
+        rightMotorGroup.inverted = true
     }
 
     /**
@@ -62,36 +60,23 @@ object Robot : TimedRobot()
     override fun robotPeriodic() {}
 
     override fun autonomousInit() {
-        /* This autonomousInit function (along with the initAutoChooser function) shows how to select
-        between different autonomous modes using the dashboard. The sendable chooser code works with the
-        SmartDashboard. You can add additional auto modes by adding additional options to the AutoMode enum
-        and then adding them to the `when` statement in the [autonomousPeriodic] function.
-
-        If you prefer the LabVIEW Dashboard, remove all the chooser code and uncomment the following line: */
-        //selectedAutoMode = AutoMode.valueOf(SmartDashboard.getString("Auto Selector", AutoMode.default.name))
-        selectedAutoMode = autoModeChooser.selected ?: AutoMode.default
-        println("Selected auto mode: ${selectedAutoMode.optionName}")
-        selectedAutoMode.autoInitFunction.invoke()
+        timer.reset()
+        timer.start()
     }
 
     /** This method is called periodically during autonomous.  */
-    override fun autonomousPeriodic() = selectedAutoMode.periodicFunction.invoke()
-
-    private fun autoMode1()
-    {
-        TODO("Write custom auto mode 1")
+    override fun autonomousPeriodic() {
+        TODO("Robot is not built yet")
     }
 
-    private fun autoMode2()
-    {
-        TODO("Write custom auto mode 2")
-    }
 
     /** This method is called once when teleop is enabled.  */
     override fun teleopInit() {}
 
     /** This method is called periodically during operator control.  */
-    override fun teleopPeriodic() {}
+    override fun teleopPeriodic() {
+        diffDrive.tankDrive(-controller.y, -controller.x)
+    }
 
     /** This method is called once when the robot is disabled.  */
     override fun disabledInit() {}

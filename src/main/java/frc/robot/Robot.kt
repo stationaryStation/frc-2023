@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 
 /**
  * The VM is configured to automatically run this object (which basically functions as a singleton class),
@@ -53,7 +53,7 @@ object Robot : TimedRobot()
     override fun robotInit()
     {
         rightMotorGroup.inverted = true
-        SmartDashboard.putNumber("Gyro Z", gyro.angle)
+        Shuffleboard.getTab("Gyro").add(gyro)
     }
 
     /**

@@ -1,11 +1,13 @@
 package frc.robot
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 /**
  * The VM is configured to automatically run this object (which basically functions as a singleton class),
@@ -37,6 +39,9 @@ object Robot : TimedRobot()
     // Initialize the controller
     private val controller: Joystick = Joystick(0)
 
+    // Initialize gyro
+    private val gyro: ADXRS450_Gyro = ADXRS450_Gyro()
+
     // Create a new timer
     private val timer: Timer = Timer()
 
@@ -48,6 +53,7 @@ object Robot : TimedRobot()
     override fun robotInit()
     {
         rightMotorGroup.inverted = true
+        SmartDashboard.putNumber("Gyro Z", gyro.angle)
     }
 
     /**

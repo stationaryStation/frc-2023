@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX
 
 /**
  * The VM is configured to automatically run this object (which basically functions as a singleton class),
@@ -21,10 +21,10 @@ object Robot : TimedRobot()
 {
 
     // Initialize Drivetrain Motors
-    private val frontRightMotor: PWMSparkMax = PWMSparkMax(0)
-    private val frontLeftMotor: PWMSparkMax = PWMSparkMax(1)
-    private val rearRightMotor: PWMSparkMax = PWMSparkMax(2)
-    private val rearLeftMotor: PWMSparkMax = PWMSparkMax(3)
+    private val frontRightMotor: PWMTalonSRX = PWMTalonSRX(0)
+    private val frontLeftMotor: PWMTalonSRX = PWMTalonSRX(1)
+    private val rearRightMotor: PWMTalonSRX = PWMTalonSRX(2)
+    private val rearLeftMotor: PWMTalonSRX = PWMTalonSRX(3)
 
 
     // Group Motors

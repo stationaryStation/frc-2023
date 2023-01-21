@@ -60,7 +60,9 @@ object Robot : TimedRobot()
     override fun robotPeriodic() {}
 
     override fun autonomousInit() {
+        // Reset the timer
         timer.reset()
+        // Start the timer
         timer.start()
     }
 

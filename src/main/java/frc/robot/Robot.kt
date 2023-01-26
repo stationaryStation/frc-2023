@@ -1,12 +1,12 @@
 package frc.robot
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import edu.wpi.first.wpilibj.ADXRS450_Gyro
 import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
-import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 
 /**
@@ -23,10 +23,10 @@ object Robot : TimedRobot()
 {
 
     // Initialize Drivetrain Motors
-    private val frontRightMotor: PWMTalonSRX = PWMTalonSRX(0)
-    private val frontLeftMotor: PWMTalonSRX = PWMTalonSRX(1)
-    private val rearRightMotor: PWMTalonSRX = PWMTalonSRX(2)
-    private val rearLeftMotor: PWMTalonSRX = PWMTalonSRX(3)
+    private val frontRightMotor: WPI_TalonSRX = WPI_TalonSRX(0)
+    private val frontLeftMotor: WPI_TalonSRX = WPI_TalonSRX(1)
+    private val rearRightMotor: WPI_TalonSRX = WPI_TalonSRX(2)
+    private val rearLeftMotor: WPI_TalonSRX = WPI_TalonSRX(3)
 
 
     // Group Motors

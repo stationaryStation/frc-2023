@@ -2,9 +2,9 @@ package frc.robot
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import edu.wpi.first.wpilibj.ADXRS450_Gyro
-import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.Timer
+import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
@@ -37,7 +37,7 @@ object Robot : TimedRobot()
     private val diffDrive: DifferentialDrive = DifferentialDrive(rightMotorGroup, leftMotorGroup)
 
     // Initialize the controller
-    private val controller: Joystick = Joystick(0)
+    private val controller: XboxController = XboxController(0)
 
     // Initialize gyro
     private val gyro: ADXRS450_Gyro = ADXRS450_Gyro()
@@ -83,7 +83,7 @@ object Robot : TimedRobot()
 
     /** This method is called periodically during operator control.  */
     override fun teleopPeriodic() {
-        diffDrive.tankDrive(-controller.y, -controller.x)
+        diffDrive.tankDrive(-controller.leftY, -controller.rightY)
     }
 
     /** This method is called once when the robot is disabled.  */

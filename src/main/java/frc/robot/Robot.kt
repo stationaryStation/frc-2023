@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 /**
  * The VM is configured to automatically run this object (which basically functions as a singleton class),
@@ -55,7 +54,7 @@ object Robot : TimedRobot()
     private val debugTab: ShuffleboardTab = Shuffleboard
         .getTab("debug")
 
-    val controllerInfoLayout: ShuffleboardLayout = debugTab
+    private val controllerInfoLayout: ShuffleboardLayout = debugTab
         .getLayout("Joystick Values", BuiltInLayouts.kList)
         .withSize(4, 4)
 

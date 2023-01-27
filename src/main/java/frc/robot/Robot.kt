@@ -1,13 +1,19 @@
 package frc.robot
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
+import edu.wpi.first.hal.simulation.RoboRioDataJNI
 import edu.wpi.first.wpilibj.ADXRS450_Gyro
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 /**
  * The VM is configured to automatically run this object (which basically functions as a singleton class),
@@ -45,6 +51,13 @@ object Robot : TimedRobot()
     // Create a new timer
     private val timer: Timer = Timer()
 
+    // Initialize Shuffleboard Tabs
+    private val debugTab: ShuffleboardTab = Shuffleboard
+        .getTab("debug")
+
+    val controllerInfoLayout: ShuffleboardLayout = debugTab
+        .getLayout("Joystick Values", BuiltInLayouts.kList)
+        .withSize(4, 4)
 
     /**
      * This method is run when the robot is first started up and should be used for any
@@ -99,8 +112,24 @@ object Robot : TimedRobot()
     override fun testPeriodic() {}
 
     /** This method is called once when the robot is first started up.  */
-    override fun simulationInit() {}
+    override fun simulationInit() {
+        Shuffleboard.selectTab("debug")
+        controllerInfoLayout
+            .add("Input", controller)
+            .withWidget(BuiltInWidgets.kPIDController)
+            .withSize(4,4)
+
+        debugTab
+            .add("Drive Train Status", diffDrive)
+            .withWidget(BuiltInWidgets.kDifferentialDrive)
+
+        debugTab
+            .add("Robot Voltage", RoboRioDataJNI.getVInVoltage())
+            .withWidget(BuiltInWidgets.kGraph)
+    }
 
     /** This method is called periodically whilst in simulation.  */
-    override fun simulationPeriodic() {}
+    override fun simulationPeriodic() {
+
+    }
 }

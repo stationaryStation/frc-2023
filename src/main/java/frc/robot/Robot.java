@@ -60,7 +60,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    robotDrivetrain.tankDrive(controller.getLeftX(), controller.getLeftY());
+    if (matchTimer.get() > 2.0) {
+      // This should go forwards
+      robotDrivetrain.arcadeDrive(0.5, 0.5, false);
+    } else {
+      robotDrivetrain.stopMotor();
+    }
   }
 
   @Override
@@ -70,7 +75,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-
+    robotDrivetrain.tankDrive(controller.getLeftX(), controller.getLeftY());
   }
 
   @Override

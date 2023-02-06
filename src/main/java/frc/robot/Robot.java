@@ -49,18 +49,9 @@ public class Robot extends TimedRobot {
 
   private void enableSafety() {
     // Enable motor safety for all motors
-    frontLeftMotor.setSafetyEnabled(true);
-    frontRightMotor.setSafetyEnabled(true);
-    rearLeftMotor.setSafetyEnabled(true);
-    rearRightMotor.setSafetyEnabled(true);
-    frontLeftMotor.setExpiration(.1);
-    frontRightMotor.setExpiration(.1);
-    rearLeftMotor.setExpiration(.1);
-    rearRightMotor.feed();
-    frontLeftMotor.feed();
-    frontRightMotor.feed();
-    rearLeftMotor.feed();
-    rearRightMotor.feed();
+    robotDrivetrain.setSafetyEnabled(true);
+    robotDrivetrain.setExpiration(.1);
+    robotDrivetrain.feed();
   }
 
   @Override
@@ -98,7 +89,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    robotDrivetrain.tankDrive(controller.getRightY(), controller.getLeftY());
+    robotDrivetrain.tankDrive(controller.getLeftY(), controller.getRightY());
   }
 
   @Override

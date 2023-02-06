@@ -13,14 +13,18 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the
+ * name of this class or
+ * the package after creating this project, you must also update the
+ * build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
   /**
-   * This function is run when the robot is first started up and should be used for any
+   * This function is run when the robot is first started up and should be used
+   * for any
    * initialization code.
    */
 
@@ -43,15 +47,34 @@ public class Robot extends TimedRobot {
     matchTimer.start();
   }
 
-  @Override
-  public void robotInit() {
-    // When turning to right the robot steers to the left but if inverted, it will steer
-    // to the right successfully.
-    rightDrivetrain.setInverted(true);
+  private void enableSafety() {
+    // Enable motor safety for all motors
+    frontLeftMotor.setSafetyEnabled(true);
+    frontRightMotor.setSafetyEnabled(true);
+    rearLeftMotor.setSafetyEnabled(true);
+    rearRightMotor.setSafetyEnabled(true);
+    frontLeftMotor.setExpiration(.1);
+    frontRightMotor.setExpiration(.1);
+    rearLeftMotor.setExpiration(.1);
+    rearRightMotor.feed();
+    frontLeftMotor.feed();
+    frontRightMotor.feed();
+    rearLeftMotor.feed();
+    rearRightMotor.feed();
   }
 
   @Override
-  public void robotPeriodic() {}
+  public void robotInit() {
+    // When turning to right the robot steers to the left but if inverted, it will
+    // steer
+    // to the right successfully.
+    rightDrivetrain.setInverted(true);
+    enableSafety();
+  }
+
+  @Override
+  public void robotPeriodic() {
+  }
 
   @Override
   public void autonomousInit() {
@@ -79,14 +102,18 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+  }
 
   @Override
-  public void testInit() {}
+  public void testInit() {
+  }
 
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 }

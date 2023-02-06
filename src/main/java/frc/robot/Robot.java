@@ -28,9 +28,9 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  private final WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(1);
-  private final WPI_TalonSRX rearRightMotor = new WPI_TalonSRX(3);
-  private final WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(2);
+  private final WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(2);
+  private final WPI_TalonSRX rearRightMotor = new WPI_TalonSRX(1);
+  private final WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(3);
   private final WPI_TalonSRX rearLeftMotor = new WPI_TalonSRX(4);
 
   private final MotorControllerGroup rightDrivetrain = new MotorControllerGroup(frontRightMotor, rearRightMotor);
@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    robotDrivetrain.tankDrive(controller.getLeftY(), controller.getRightY());
+    robotDrivetrain.tankDrive(-controller.getRawAxis(1)-.2, -controller.getRawAxis(5)-.2);
   }
 
   @Override

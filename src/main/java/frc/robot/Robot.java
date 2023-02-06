@@ -54,6 +54,16 @@ public class Robot extends TimedRobot {
     robotDrivetrain.feed();
   }
 
+  private double velocityCheck(double axisValue) {
+    if (axisValue > .7) {
+      return .7;
+    } else if (axisValue < -.7) {
+      return -.7;
+    } else {
+      return axisValue;
+    }
+  }
+
   @Override
   public void robotInit() {
     // When turning to right the robot steers to the left but if inverted, it will
@@ -89,7 +99,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    robotDrivetrain.tankDrive(-controller.getRawAxis(1)-.2, -controller.getRawAxis(5)-.2);
+    robotDrivetrain.tankDrive(-velocityCheck(controller.getRawAxis(1)), -velocityCheck(controller.getRawAxis(5)));
   }
 
   @Override

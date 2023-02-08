@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,18 +29,8 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  private final WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(2);
-  private final WPI_TalonSRX rearRightMotor = new WPI_TalonSRX(1);
-  private final WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(3);
-  private final WPI_TalonSRX rearLeftMotor = new WPI_TalonSRX(4);
-
-  private final MotorControllerGroup rightDrivetrain = new MotorControllerGroup(frontRightMotor, rearRightMotor);
-  private final MotorControllerGroup leftDrivetrain = new MotorControllerGroup(frontLeftMotor, rearLeftMotor);
-
-  private final DifferentialDrive robotDrivetrain = new DifferentialDrive(leftDrivetrain, rightDrivetrain);
-
-  private final XboxController controller = new XboxController(0);
-
+  private RobotContainer rbContainer;
+  
   private final Timer matchTimer = new Timer();
 
   private void startMode() {
@@ -47,30 +38,10 @@ public class Robot extends TimedRobot {
     matchTimer.start();
   }
 
-  private void enableSafety() {
-    // Enable motor safety for all motors
-    robotDrivetrain.setSafetyEnabled(true);
-    robotDrivetrain.setExpiration(.1);
-    robotDrivetrain.feed();
-  }
-
-  private double velocityCheck(double axisValue) {
-    if (axisValue > .7) {
-      return .7;
-    } else if (axisValue < -.7) {
-      return -.7;
-    } else {
-      return axisValue;
-    }
-  }
 
   @Override
   public void robotInit() {
-    // When turning to right the robot steers to the left but if inverted, it will
-    // steer
-    // to the right successfully.
-    rightDrivetrain.setInverted(true);
-    enableSafety();
+    rbContainer = new RobotContainer();
   }
 
   @Override
@@ -84,12 +55,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    if (matchTimer.get() > 2.0) {
-      // This should go forwards
-      robotDrivetrain.arcadeDrive(0.5, 0.5, false);
-    } else {
-      robotDrivetrain.stopMotor();
-    }
+    // FIXME: ADD AUTONOMOUS COMMAND
   }
 
   @Override
@@ -99,11 +65,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    robotDrivetrain.tankDrive(-velocityCheck(controller.getRawAxis(1)), -velocityCheck(controller.getRawAxis(5)));
+    // Overriden by default command under RobotContainer
   }
 
   @Override
   public void disabledInit() {
+    CommandScheduler.getInstance().cancelAll();
   }
 
   @Override

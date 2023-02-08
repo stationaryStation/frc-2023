@@ -21,8 +21,7 @@ public class RobotContainer {
         configureButtonBindings();
 
         robotDrivetrain.setDefaultCommand(Commands.run(
-                () -> robotDrivetrain.tankDrive(driverController.getLeftY(), driverController.getRightY()),
-                robotDrivetrain));
+                () -> robotDrivetrain.arcadeDrive(-driverController.getLeftY(), -driverController.getLeftX()), robotDrivetrain));
     }
 
     private void configureButtonBindings() {

@@ -27,6 +27,9 @@ public class DriveSubsystem extends SubsystemBase {
         drivetrain.setSafetyEnabled(true);
         drivetrain.setExpiration(.1);
         drivetrain.feed();
+
+        // Add velocity limit
+        drivetrain.setMaxOutput(.7);
     }
 
     /**
@@ -38,6 +41,15 @@ public class DriveSubsystem extends SubsystemBase {
      */
     public void tankDrive(double left_pwr, double right_pwr) {
         drivetrain.tankDrive(left_pwr, right_pwr);
+    }
+    /**
+     * Drives the robot using arcade-like controls using
+     * {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}
+     * @param xSpeed
+     * @param zSpeed
+     */
+    public void arcadeDrive(double xSpeed, double zSpeed) {
+        drivetrain.arcadeDrive(xSpeed, zSpeed);
     }
 
     /**

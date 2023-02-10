@@ -16,9 +16,9 @@ public class Balance extends CommandBase {
 
   @Override
   public void execute() {
-    if (gSubsystem.getAngle() > 30) {
+    if (gSubsystem.getAngle() > 5) {
       dSubsystem.arcadeDrive(0, .3);
-    } else if (gSubsystem.getAngle() > -30) {
+    } else if (gSubsystem.getAngle() > -5) {
       dSubsystem.arcadeDrive(0, -.3);
     } else {
       dSubsystem.stopMotors();
@@ -27,11 +27,10 @@ public class Balance extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    if (gSubsystem.getAngle() > 0 || gSubsystem.getAngle() < 0) {
+    if (gSubsystem.getAngle() > -5 && gSubsystem.getAngle() < 5) {
       return false;
     } else {
       return true;
     }
   }
-
 }

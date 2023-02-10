@@ -1,9 +1,13 @@
 package frc.robot.subsystems;
 
+import java.util.function.BooleanSupplier;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -18,6 +22,8 @@ public class DriveSubsystem extends SubsystemBase {
             new WPI_TalonSRX(DriveConstants.rearRightPort));
     // Robot's drivetrain
     private final DifferentialDrive drivetrain = new DifferentialDrive(leftMotors, rightMotors);
+
+    private ADXRS450_Gyro gyroscope = new ADXRS450_Gyro();
 
     /** Creates a new DriveSubsystem */
     public DriveSubsystem() {
@@ -42,9 +48,11 @@ public class DriveSubsystem extends SubsystemBase {
     public void tankDrive(double left_pwr, double right_pwr) {
         drivetrain.tankDrive(left_pwr, right_pwr);
     }
+
     /**
      * Drives the robot using arcade-like controls using
      * {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}
+     * 
      * @param xSpeed
      * @param zSpeed
      */
@@ -61,4 +69,10 @@ public class DriveSubsystem extends SubsystemBase {
     public void setMaxOutput(double maxOutput) {
         drivetrain.setMaxOutput(maxOutput);
     }
+
+    /** Stops the motors in the drivetrain */
+    public void stopMotors() {
+        drivetrain.stopMotor();
+    }
+
 }

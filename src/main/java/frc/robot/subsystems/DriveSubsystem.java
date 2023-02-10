@@ -22,8 +22,7 @@ public class DriveSubsystem extends SubsystemBase {
             new WPI_TalonSRX(DriveConstants.rearRightPort));
     // Robot's drivetrain
     private final DifferentialDrive drivetrain = new DifferentialDrive(leftMotors, rightMotors);
-
-    private ADXRS450_Gyro gyroscope = new ADXRS450_Gyro();
+    
 
     /** Creates a new DriveSubsystem */
     public DriveSubsystem() {

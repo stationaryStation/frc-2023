@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.*;
+import edu.wpi.first.math.controller.PIDController;
 
 
 
@@ -12,29 +13,23 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 public class Balance extends CommandBase {
   private final DriveSubsystem dSubsystem;
   private final GyroSubsystem gSubsystem;
+  private final PIDController pid = new PIDController(0.1, 0.04, 0);
 
 
   public Balance(DriveSubsystem drivetrain, GyroSubsystem gyro) {
     dSubsystem = drivetrain;
     gSubsystem = gyro;
     addRequirements(dSubsystem, gSubsystem);
+    pid.enableContinuousInput(-180, 180);
   }
 
   @Override
   public void execute() {
-    if (gSubsystem.getAngle() > 2.0) {
-      SmartDashboard.putBoolean("go left", true);
-      SmartDashboard.putBoolean("go right",false);
-      dSubsystem.arcadeDrive(0, 1);
+    
+    SmartDashboard.putNumber("pid output",-1*pid.calculate(gSubsystem.getAngle(),0));
+    
+    dSubsystem.arcadeDrive(0,-1*pid.calculate(gSubsystem.getAngle(),0));
 
-    } else if (gSubsystem.getAngle() < -2.0) {
-      SmartDashboard.putBoolean("go left", false);
-      SmartDashboard.putBoolean("go right",true);
-      dSubsystem.arcadeDrive(0, -1);
-
-    } else {
-
-    }
     SmartDashboard.putNumber("ang",gSubsystem.getAngle());
 
   }
@@ -42,6 +37,5 @@ public class Balance extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
-    //return (gSubsystem.getAngle() > -5 && gSubsystem.getAngle() < 5);
   }
 }

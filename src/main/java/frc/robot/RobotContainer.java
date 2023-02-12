@@ -31,9 +31,11 @@ public class RobotContainer {
                 robotDrivetrain));
     }
 
+    /**
+     * Configures bindings for the controller
+     * See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
+     */
     private void configureButtonBindings() {
-        // Configure bindings to commands here
         driverController.a().toggleOnTrue(balanceCommand);
-
     }
 }

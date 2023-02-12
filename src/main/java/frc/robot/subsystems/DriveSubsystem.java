@@ -1,13 +1,9 @@
 package frc.robot.subsystems;
 
-import java.util.function.BooleanSupplier;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -22,7 +18,6 @@ public class DriveSubsystem extends SubsystemBase {
             new WPI_TalonSRX(DriveConstants.rearRightPort));
     // Robot's drivetrain
     private final DifferentialDrive drivetrain = new DifferentialDrive(leftMotors, rightMotors);
-    
 
     /** Creates a new DriveSubsystem */
     public DriveSubsystem() {

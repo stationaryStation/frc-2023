@@ -50,9 +50,7 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {
-    // FIXME: ADD AUTONOMOUS COMMAND
-  }
+  public void autonomousPeriodic() {}
 
   @Override
   public void teleopInit() {

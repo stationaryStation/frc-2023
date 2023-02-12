@@ -14,6 +14,8 @@ public class Balance extends CommandBase {
     addRequirements(dSubsystem, gSubsystem);
   }
 
+  // Everything inside of this execute function will run until it is finished or
+  // when the command ends.
   @Override
   public void execute() {
     if (gSubsystem.getAngle() > 5) {

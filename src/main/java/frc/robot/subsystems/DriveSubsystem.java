@@ -30,11 +30,11 @@ public class DriveSubsystem extends SubsystemBase {
 
         // Enable safety to avoid errors during matches
         drivetrain.setSafetyEnabled(true);
-        drivetrain.setExpiration(.2);
+        drivetrain.setExpiration(.1);
         drivetrain.feed();
 
         // Add velocity limit
-        drivetrain.setMaxOutput(.2);
+        drivetrain.setMaxOutput(.3);
     }
 
     /**

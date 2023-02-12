@@ -18,19 +18,23 @@ public class GyroSubsystem extends SubsystemBase {
      * @return angle
      */
     public double getAngle() {
-        return gyroscope.getAngle();
-    }
+        double angle = gyroscope.getAngle()%360;
 
-    /**
-     * Checks if the robot is balanced
-     * 
-     * @return status
-     */
-    public boolean isBalanced() {
-        if (gyroscope.getAngle() > 5 || gyroscope.getAngle() < -5) {
-            return false;
-        } else {
-            return true;
+        if (angle > 0){
+            angle = angle%360;
+            if (angle <= 180){return angle;}
+            else if (angle > 180){
+                angle = angle - 360;
+                return angle;
+            }
+        } else if (angle < 0){
+            if (angle >= -180){return angle;}
+            else if (angle < -180){
+                angle = 360 + angle;
+                return angle;
+            }
+            return angle;
         }
+        return angle;
     }
 }

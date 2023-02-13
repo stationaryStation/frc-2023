@@ -23,6 +23,8 @@ public class Balance extends CommandBase {
     pid.enableContinuousInput(-180, 180);
   }
 
+  // Everything inside of this execute function will run until it is finished or
+  // when the command ends.
   @Override
   public void execute() {
     

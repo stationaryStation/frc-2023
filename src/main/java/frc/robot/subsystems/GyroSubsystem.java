@@ -18,22 +18,17 @@ public class GyroSubsystem extends SubsystemBase {
      * @return angle
      */
     public double getAngle() {
-        double angle = gyroscope.getAngle()%360;
+        double angle = gyroscope.getAngle() % 360;
 
-        if (angle > 0){
-            angle = angle%360;
-            if (angle <= 180){return angle;}
-            else if (angle > 180){
+        if ( angle > 0 ){
+            angle = angle % 360;
+            if ( angle > 180 ){
                 angle = angle - 360;
-                return angle;
             }
-        } else if (angle < 0){
-            if (angle >= -180){return angle;}
-            else if (angle < -180){
+        } else if ( angle < 0 ){
+            if ( angle < -180 ){
                 angle = 360 + angle;
-                return angle;
             }
-            return angle;
         }
         return angle;
     }

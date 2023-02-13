@@ -9,7 +9,7 @@ public class GyroSubsystem extends SubsystemBase {
 
     /** Creates a new GyroSubsystem */
     public GyroSubsystem() {
-        //gyroscope.reset();
+        
     }
 
     /**

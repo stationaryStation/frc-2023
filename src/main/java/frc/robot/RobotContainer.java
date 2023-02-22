@@ -4,6 +4,13 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriverContstants;
 import frc.robot.commands.Balance;
+import frc.robot.commands.goDown;
+import frc.robot.commands.goUp;
+import frc.robot.commands.moveBackward;
+import frc.robot.commands.moveForward;
+import frc.robot.commands.stopXArmMovement;
+import frc.robot.commands.stopYArmMovement;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 
@@ -11,12 +18,20 @@ public class RobotContainer {
     // Initialize robot subsytems
     private final DriveSubsystem robotDrivetrain = new DriveSubsystem();
     private final GyroSubsystem gyroscope = new GyroSubsystem();
+    private final ArmSubsystem arm = new ArmSubsystem();
 
     // Initialize the driver's controller
     CommandXboxController driverController = new CommandXboxController(DriverContstants.driverControllerPort);
 
-    // Import Balance Command
+    // Import Commands
     private Balance balanceCommand = new Balance(robotDrivetrain, gyroscope);
+    private goUp upCommand = new goUp(arm);
+    private goDown downCommand = new goDown(arm);
+    private moveBackward backward = new moveBackward(arm);
+    private moveForward forward = new moveForward(arm);
+    private stopYArmMovement stopYArm = new stopYArmMovement(arm);
+    private stopXArmMovement stopXArm = new stopXArmMovement(arm);
+
 
     /**
      * The container for the robot. Contains subsystems, controllers devices and
@@ -37,5 +52,10 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         driverController.a().toggleOnTrue(balanceCommand);
+        driverController.povUp().onTrue(upCommand);
+        driverController.povDown().onTrue(downCommand);
+        driverController.x().toggleOnTrue(stopYArm);
+        driverController.leftBumper().onTrue(backward).onFalse(stopXArm);
+        driverController.rightBumper().onTrue(forward).onFalse(stopXArm);
     }
 }

@@ -11,7 +11,7 @@ public final class Constants {
     public static final class ArmConstants {
         public static final int topTalonSRXPort = 5;
         public static final int bottomTalonSRXPort = 6;
-        public static final double upVel = .5;
+        public static final double upVel = .3;
         public static final double downVel = .06;
         public static final double horizonalVel = 1;
     }

@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class moveBackward extends CommandBase {
@@ -14,6 +13,6 @@ public class moveBackward extends CommandBase {
 
     @Override
     public void execute() {
-        aSubsystem.moveX(-ArmConstants.horizonalVel);
+        aSubsystem.moveX(false);
     }
 }

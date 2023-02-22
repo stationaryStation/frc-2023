@@ -16,6 +16,11 @@ public class Balance extends CommandBase {
   private final PIDController pid = new PIDController(0.1, 0.04, 0);
 
 
+  /**
+   * Initialize Balance Command
+   * @param drivetrain
+   * @param gyro
+   */
   public Balance(DriveSubsystem drivetrain, GyroSubsystem gyro) {
     dSubsystem = drivetrain;
     gSubsystem = gyro;

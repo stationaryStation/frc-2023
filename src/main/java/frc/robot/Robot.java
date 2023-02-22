@@ -18,14 +18,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-  /**
-   * This function is run when the robot is first started up and should be used
-   * for any
-   * initialization code.
-   */
-
-  private RobotContainer rbContainer;
-  
   private final Timer matchTimer = new Timer();
 
   private void startMode() {
@@ -36,7 +28,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    rbContainer = new RobotContainer();
+    new RobotContainer();
   }
 
   @Override

@@ -29,7 +29,7 @@ public class DriveSubsystem extends SubsystemBase {
         drivetrain.feed();
 
         // Add velocity limit
-        drivetrain.setMaxOutput(.7);
+        drivetrain.setMaxOutput(.3);
     }
 
     /**

@@ -10,6 +10,21 @@ Run commands using `./gradlew` or the [official WPILib Extension](https://github
 | deploy  | send code to robot                |
 | build   | download deps and build java code |
 
+## Creating New Commands
+
+To create a new command, create a new file in `src/main/java/frc/robot/commands` and make a class that extends `CommandBase`. Then add the needed subsytems (aka. Parts of the robot you want to manipulate) to the class.
+
+```java
+private final DriveSubsystem drivetrain;
+
+public CommandNameHere(DriveSubsystem d) {
+    drivetrain = d;
+    addRequirements(drivetrain);
+}
+```
+
+Functions in `public void execute()` run constantly, use `@Override`
+
 ## Contributors
 
 | user               | contributions    |

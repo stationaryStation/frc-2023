@@ -6,8 +6,6 @@ import frc.robot.Constants.DriverContstants;
 import frc.robot.commands.Balance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
-// import frc.robot.commands.moveBackward;
-// import frc.robot.commands.moveForward;
 import frc.robot.commands.toggleX;
 import frc.robot.commands.toggleGrab;
 import frc.robot.commands.stopYArmMovement;
@@ -30,8 +28,6 @@ public class RobotContainer {
     private goDown downCommand = new goDown(arm);
     private toggleX fordward = new toggleX(arm);
     private toggleGrab grab = new toggleGrab(arm);
-    // private moveBackward backward = new moveBackward(arm);
-    // private moveForward forward = new moveForward(arm);
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
 
 
@@ -58,7 +54,5 @@ public class RobotContainer {
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
         driverController.x().toggleOnTrue(stopYArm);
-        // driverController.leftBumper().onTrue(backward).onFalse(stopXArm);
-        // driverController.rightBumper().onTrue(forward).onFalse(stopXArm);
     }
 }

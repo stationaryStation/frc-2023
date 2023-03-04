@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.CamSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class alignToTarget extends CommandBase {
@@ -17,13 +18,15 @@ public class alignToTarget extends CommandBase {
         aSubsystem = camS;
         dSubsystem = drivetrain;
         addRequirements(aSubsystem, dSubsystem);
-        pid.enableContinuousInput(-180, 180);
+        pid.enableContinuousInput(-27, 27);
 
     }
 
     @Override
     public void execute() {
-        robotDrivetrain.arcadeDrive(0, pid.calculate(aSubsystem.getY(),0));
+        double output = pid.calculate(aSubsystem.getY(),0);
+        SmartDashboard.putNumber("PID output align", output);
+        //robotDrivetrain.arcadeDrive(0, output);
     }
     @Override
     public boolean isFinished() {

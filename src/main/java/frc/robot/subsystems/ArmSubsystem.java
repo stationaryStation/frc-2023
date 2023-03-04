@@ -16,9 +16,8 @@ public class ArmSubsystem extends SubsystemBase {
             new WPI_TalonSRX(ArmConstants.topTalonSRXPort),
             new WPI_TalonSRX(ArmConstants.bottomTalonSRXPort));
 
-    private final Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    private final DoubleSolenoid armDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
-    private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+    private final DoubleSolenoid armDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.armForwardChannel, ArmConstants.armReverseChannel);
+    private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.armReverseChannel);
 
     
     
@@ -43,15 +42,17 @@ public class ArmSubsystem extends SubsystemBase {
         armDoubleSolenoid.toggle();
     }
 
+    /**
+     * Toggles the claw movement
+     */
     public void toggleGrab() {
         grabDoubleSolenoid.toggle();
     }
 
+    /**
+     * Stops the arm frame motors
+     */
     public void stopY() {
         yControllerGroup.stopMotor();
-    }
-
-    public void stopX() {
-        armDoubleSolenoid.set(kOff);
     }
 }

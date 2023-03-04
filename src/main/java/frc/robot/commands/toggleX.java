@@ -6,6 +6,11 @@ import frc.robot.subsystems.ArmSubsystem;
 public class toggleX extends CommandBase {
     private final ArmSubsystem aSubsystem;
     
+    /**
+     * Toggles whether the arm should retract or expand.
+     * 
+     * @param a ArmSubsystem
+     */
     public toggleX(ArmSubsystem a) {
         aSubsystem = a;
         addRequirements(aSubsystem);

@@ -7,17 +7,14 @@ import frc.robot.subsystems.GyroSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.math.controller.PIDController;
 
-
-
-
 public class Balance extends CommandBase {
   private final DriveSubsystem dSubsystem;
   private final GyroSubsystem gSubsystem;
   private final PIDController pid = new PIDController(0.1, 0.04, 0);
 
-
   /**
    * Initialize Balance Command
+   * 
    * @param drivetrain
    * @param gyro
    */
@@ -32,12 +29,12 @@ public class Balance extends CommandBase {
   // when the command ends.
   @Override
   public void execute() {
-    
-    SmartDashboard.putNumber("pid output",-1*pid.calculate(gSubsystem.getAngle(),0));
-    
-    dSubsystem.arcadeDrive(0,-1*pid.calculate(gSubsystem.getAngle(),0));
 
-    SmartDashboard.putNumber("ang",gSubsystem.getAngle());
+    SmartDashboard.putNumber("pid output", -1 * pid.calculate(gSubsystem.getAngle(), 0));
+
+    dSubsystem.arcadeDrive(0, -1 * pid.calculate(gSubsystem.getAngle(), 0));
+
+    SmartDashboard.putNumber("ang", gSubsystem.getAngle());
 
   }
 

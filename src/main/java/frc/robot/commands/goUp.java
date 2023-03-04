@@ -7,6 +7,11 @@ import frc.robot.subsystems.ArmSubsystem;
 public class goUp extends CommandBase {
     private final ArmSubsystem aSubsystem;
     
+    /**
+     * Command that moves the arm up in a constant velocity
+     * 
+     * @param a ArmSubsystem
+     */
     public goUp(ArmSubsystem a) {
         aSubsystem = a;
         addRequirements(aSubsystem);

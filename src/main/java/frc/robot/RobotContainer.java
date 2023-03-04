@@ -26,9 +26,9 @@ public class RobotContainer {
     private Balance balanceCommand = new Balance(robotDrivetrain, gyroscope);
     private goUp upCommand = new goUp(arm);
     private goDown downCommand = new goDown(arm);
-    private toggleX fordward = new toggleX(arm);
-    private toggleGrab grab = new toggleGrab(arm);
-    private stopYArmMovement stopYArm = new stopYArmMovement(arm);
+    private toggleX forwardCommand = new toggleX(arm);
+    private toggleGrab grabCommand = new toggleGrab(arm);
+    private stopYArmMovement stopArmCommand = new stopYArmMovement(arm);
 
 
     /**
@@ -49,11 +49,11 @@ public class RobotContainer {
      * See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
      */
     private void configureButtonBindings() {
-        driverController.a().onTrue(fordward);
-        driverController.b().onTrue(grab);
+        driverController.a().onTrue(forwardCommand);
+        driverController.b().onTrue(grabCommand);
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
-        driverController.x().toggleOnTrue(stopYArm);
+        driverController.x().toggleOnTrue(stopArmCommand);
         // TODO: Find a button that is available for the balance command.
     }
 }

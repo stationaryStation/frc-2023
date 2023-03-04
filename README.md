@@ -30,5 +30,5 @@ Functions in `public void execute()` run constantly, use `@Override`
 | user               | contributions    |
 |--------------------|------------------|
 | @stationaryStation | repo owner, base |
-| @LewisMojica       | #1, #5           |
+| @LewisMojica       | #1, #5, #6       |
 | @teamforcerd       | bug fixes        |

@@ -30,14 +30,14 @@ public class PlatformBalance extends CommandBase {
   @Override
   public void execute() {
 
-    SmartDashboard.putNumber("pid output", -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
+    SmartDashboard.putNumber("PID output", -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
 
     dSubsystem.arcadeDrive(0, -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
 
-    SmartDashboard.putNumber("ang", gSubsystem.getClampedAngle());
+    SmartDashboard.putNumber("Current Clamped Angle", gSubsystem.getClampedAngle());
     dSubsystem.arcadeDrive(0, -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
 
-    SmartDashboard.putNumber("ang", gSubsystem.getClampedAngle());
+    SmartDashboard.putNumber("Current Clamped Angle", gSubsystem.getClampedAngle());
   }
 
   @Override

@@ -8,7 +8,7 @@ import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
 import frc.robot.commands.toggleX;
 import frc.robot.commands.toggleGrab;
-import frc.robot.commands.stopYArmMovement;
+import frc.robot.commands.stopArmMotors;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
@@ -28,7 +28,7 @@ public class RobotContainer {
     private goDown downCommand = new goDown(arm);
     private toggleX forwardCommand = new toggleX(arm);
     private toggleGrab grabCommand = new toggleGrab(arm);
-    private stopYArmMovement stopArmCommand = new stopYArmMovement(arm);
+    private stopArmMotors stopArmCommand = new stopArmMotors(arm);
 
 
     /**

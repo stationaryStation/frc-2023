@@ -30,7 +30,6 @@ public class RobotContainer {
     private toggleGrab grab = new toggleGrab(arm);
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
 
-
     /**
      * The container for the robot. Contains subsystems, controllers devices and
      * commands
@@ -46,7 +45,8 @@ public class RobotContainer {
 
     /**
      * Configures bindings for the controller
-     * See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
+     * See
+     * https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
      */
     private void configureButtonBindings() {
         driverController.a().onTrue(fordward);

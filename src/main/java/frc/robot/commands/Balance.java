@@ -30,12 +30,14 @@ public class Balance extends CommandBase {
   @Override
   public void execute() {
 
-    SmartDashboard.putNumber("pid output", -1 * pid.calculate(gSubsystem.getAngle(), 0));
+    SmartDashboard.putNumber("pid output", -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
 
-    dSubsystem.arcadeDrive(0, -1 * pid.calculate(gSubsystem.getAngle(), 0));
+    dSubsystem.arcadeDrive(0, -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
 
-    SmartDashboard.putNumber("ang", gSubsystem.getAngle());
+    SmartDashboard.putNumber("ang", gSubsystem.getClampedAngle());
+    dSubsystem.arcadeDrive(0, -1 * pid.calculate(gSubsystem.getClampedAngle(), 0));
 
+    SmartDashboard.putNumber("ang", gSubsystem.getClampedAngle());
   }
 
   @Override

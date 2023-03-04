@@ -12,7 +12,7 @@ public class GyroSubsystem extends SubsystemBase {
      * 
      * @return angle
      */
-    public double getAngle() {
+    public double getClampedAngle() {
         double angle = gyroscope.getAngle() % 360;
 
         if ( angle > 0 ){

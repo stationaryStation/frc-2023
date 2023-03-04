@@ -17,7 +17,7 @@ public class ArmSubsystem extends SubsystemBase {
             new WPI_TalonSRX(ArmConstants.bottomTalonSRXPort));
 
     private final DoubleSolenoid armDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.armForwardChannel, ArmConstants.armReverseChannel);
-    private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.armReverseChannel);
+    private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.clawReverseChannel);
 
     
     

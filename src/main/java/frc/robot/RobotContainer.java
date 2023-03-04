@@ -3,7 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriverContstants;
-import frc.robot.commands.Balance;
+import frc.robot.commands.PlatformBalance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
 import frc.robot.commands.toggleX;
@@ -23,7 +23,7 @@ public class RobotContainer {
     CommandXboxController driverController = new CommandXboxController(DriverContstants.driverControllerPort);
 
     // Import Commands
-    private Balance balanceCommand = new Balance(robotDrivetrain, gyroscope);
+    private PlatformBalance balanceCommand = new PlatformBalance(robotDrivetrain, gyroscope);
     private goUp upCommand = new goUp(arm);
     private goDown downCommand = new goDown(arm);
     private toggleX forwardCommand = new toggleX(arm);

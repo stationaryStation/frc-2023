@@ -7,7 +7,7 @@ import frc.robot.subsystems.GyroSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.math.controller.PIDController;
 
-public class Balance extends CommandBase {
+public class PlatformBalance extends CommandBase {
   private final DriveSubsystem dSubsystem;
   private final GyroSubsystem gSubsystem;
   private final PIDController pid = new PIDController(0.1, 0.04, 0);
@@ -18,7 +18,7 @@ public class Balance extends CommandBase {
    * @param drivetrain
    * @param gyro
    */
-  public Balance(DriveSubsystem drivetrain, GyroSubsystem gyro) {
+  public PlatformBalance(DriveSubsystem drivetrain, GyroSubsystem gyro) {
     dSubsystem = drivetrain;
     gSubsystem = gyro;
     addRequirements(dSubsystem, gSubsystem);

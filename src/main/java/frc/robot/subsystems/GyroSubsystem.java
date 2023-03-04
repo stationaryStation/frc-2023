@@ -8,7 +8,7 @@ public class GyroSubsystem extends SubsystemBase {
     private ADXRS450_Gyro gyroscope = new ADXRS450_Gyro();
 
     /**
-     * Returns the gyroscope's current angle
+     * Clamps gyroscope's current angle
      * 
      * @return angle
      */
@@ -26,5 +26,13 @@ public class GyroSubsystem extends SubsystemBase {
             }
         }
         return angle;
+    }
+    /**
+     * Gets gyroscope's current angle
+     * 
+     * @return angle
+     */
+    public double getAngle() {
+        return gyroscope.getAngle();
     }
 }

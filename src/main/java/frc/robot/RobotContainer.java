@@ -10,7 +10,9 @@ import frc.robot.commands.moveBackward;
 import frc.robot.commands.moveForward;
 import frc.robot.commands.stopXArmMovement;
 import frc.robot.commands.stopYArmMovement;
+import frc.robot.commands.camData;
 import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.CamSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 
@@ -19,6 +21,7 @@ public class RobotContainer {
     private final DriveSubsystem robotDrivetrain = new DriveSubsystem();
     private final GyroSubsystem gyroscope = new GyroSubsystem();
     private final ArmSubsystem arm = new ArmSubsystem();
+    private final CamSubsystem cam = new CamSubsystem();
 
     // Initialize the driver's controller
     CommandXboxController driverController = new CommandXboxController(DriverContstants.driverControllerPort);
@@ -31,7 +34,7 @@ public class RobotContainer {
     private moveForward forward = new moveForward(arm);
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
     private stopXArmMovement stopXArm = new stopXArmMovement(arm);
-
+    private camData sendCamData = new camData(cam);
 
     /**
      * The container for the robot. Contains subsystems, controllers devices and
@@ -51,7 +54,7 @@ public class RobotContainer {
      * See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
      */
     private void configureButtonBindings() {
-        driverController.a().toggleOnTrue(balanceCommand);
+        driverController.a().toggleOnTrue(sendCamData);
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
         driverController.x().toggleOnTrue(stopYArm);

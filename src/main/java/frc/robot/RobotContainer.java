@@ -54,5 +54,6 @@ public class RobotContainer {
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
         driverController.x().toggleOnTrue(stopYArm);
+        // TODO: Find a button that is available for the balance command.
     }
 }

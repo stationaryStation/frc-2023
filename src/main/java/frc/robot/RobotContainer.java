@@ -6,9 +6,8 @@ import frc.robot.Constants.DriverContstants;
 import frc.robot.commands.Balance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
-import frc.robot.commands.moveBackward;
-import frc.robot.commands.moveForward;
-import frc.robot.commands.stopXArmMovement;
+import frc.robot.commands.toggleX;
+import frc.robot.commands.toggleGrab;
 import frc.robot.commands.stopYArmMovement;
 import frc.robot.commands.camData;
 import frc.robot.subsystems.ArmSubsystem;
@@ -30,11 +29,13 @@ public class RobotContainer {
     private Balance balanceCommand = new Balance(robotDrivetrain, gyroscope);
     private goUp upCommand = new goUp(arm);
     private goDown downCommand = new goDown(arm);
-    private moveBackward backward = new moveBackward(arm);
-    private moveForward forward = new moveForward(arm);
+    private toggleX fordward = new toggleX(arm);
+    private toggleGrab grab = new toggleGrab(arm);
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
+
     private stopXArmMovement stopXArm = new stopXArmMovement(arm);
     private camData sendCamData = new camData(cam);
+
 
     /**
      * The container for the robot. Contains subsystems, controllers devices and
@@ -54,11 +55,11 @@ public class RobotContainer {
      * See https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
      */
     private void configureButtonBindings() {
-        driverController.a().toggleOnTrue(sendCamData);
+        driverController.y().toggleOnTrue(sendCamData);
+        driverController.a().onTrue(fordward);
+        driverController.b().onTrue(grab);
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
         driverController.x().toggleOnTrue(stopYArm);
-        driverController.leftBumper().onTrue(backward).onFalse(stopXArm);
-        driverController.rightBumper().onTrue(forward).onFalse(stopXArm);
     }
 }

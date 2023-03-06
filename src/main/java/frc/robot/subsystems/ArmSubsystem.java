@@ -17,14 +17,14 @@ public class ArmSubsystem extends SubsystemBase {
             new WPI_TalonSRX(ArmConstants.bottomTalonSRXPort));
 
     private final DoubleSolenoid armDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.armForwardChannel, ArmConstants.armReverseChannel);
-    private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.armReverseChannel);
+    private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.clawReverseChannel);
 
     
     
     public ArmSubsystem() {
         yControllerGroup.setInverted(true);
-        armDoubleSolenoid.set(kReverse);
-        grabDoubleSolenoid.set(kReverse);
+        armDoubleSolenoid.set(kForward);
+        grabDoubleSolenoid.set(kForward);
     }
 
     /**

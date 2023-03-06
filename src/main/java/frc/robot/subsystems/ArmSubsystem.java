@@ -18,7 +18,11 @@ public class ArmSubsystem extends SubsystemBase {
     private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.clawReverseChannel);
 
     
-    
+    /**
+     *
+     * Initialize the arm's subsystem.
+     *
+     */
     public ArmSubsystem() {
         yControllerGroup.setInverted(true);
         armDoubleSolenoid.set(kReverse);
@@ -27,6 +31,8 @@ public class ArmSubsystem extends SubsystemBase {
 
     /**
      * Moves the arm frame vertically
+     * 
+     * @param vel
      */
     public void moveY(double vel) {
         yControllerGroup.set(vel);

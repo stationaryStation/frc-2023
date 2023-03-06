@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 public class GyroSubsystem extends SubsystemBase {
+    // Is this the right model of gyroscope that we are using?
     private ADXRS450_Gyro gyroscope = new ADXRS450_Gyro();
 
     /**
@@ -27,6 +28,7 @@ public class GyroSubsystem extends SubsystemBase {
         }
         return angle;
     }
+    
     /**
      * Gets gyroscope's current angle
      * 

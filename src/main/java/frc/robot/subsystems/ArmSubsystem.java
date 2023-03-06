@@ -4,12 +4,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
-import edu.wpi.first.wpilibj.Compressor;
 
 public class ArmSubsystem extends SubsystemBase {
     private final MotorControllerGroup yControllerGroup = new MotorControllerGroup(
@@ -20,7 +18,11 @@ public class ArmSubsystem extends SubsystemBase {
     private final DoubleSolenoid grabDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ArmConstants.clawForwardChannel, ArmConstants.clawReverseChannel);
 
     
-    
+    /**
+     *
+     * Initialize the arm's subsystem.
+     *
+     */
     public ArmSubsystem() {
         yControllerGroup.setInverted(true);
         armDoubleSolenoid.set(kReverse);
@@ -29,6 +31,8 @@ public class ArmSubsystem extends SubsystemBase {
 
     /**
      * Moves the arm frame vertically
+     * 
+     * @param vel
      */
     public void moveY(double vel) {
         yControllerGroup.set(vel);

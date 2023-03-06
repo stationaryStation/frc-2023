@@ -3,12 +3,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriverContstants;
-import frc.robot.commands.Balance;
+import frc.robot.commands.PlatformBalance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
 import frc.robot.commands.toggleX;
 import frc.robot.commands.toggleGrab;
-import frc.robot.commands.stopYArmMovement;
+import frc.robot.commands.stopArmMotors;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
@@ -23,12 +23,12 @@ public class RobotContainer {
     CommandXboxController driverController = new CommandXboxController(DriverContstants.driverControllerPort);
 
     // Import Commands
-    private Balance balanceCommand = new Balance(robotDrivetrain, gyroscope);
+    private PlatformBalance balanceCommand = new PlatformBalance(robotDrivetrain, gyroscope);
     private goUp upCommand = new goUp(arm);
     private goDown downCommand = new goDown(arm);
-    private toggleX fordward = new toggleX(arm);
-    private toggleGrab grab = new toggleGrab(arm);
-    private stopYArmMovement stopYArm = new stopYArmMovement(arm);
+    private toggleX forwardCommand = new toggleX(arm);
+    private toggleGrab grabCommand = new toggleGrab(arm);
+    private stopArmMotors stopArmCommand = new stopArmMotors(arm);
 
     /**
      * The container for the robot. Contains subsystems, controllers devices and
@@ -49,10 +49,11 @@ public class RobotContainer {
      * https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
      */
     private void configureButtonBindings() {
-        driverController.a().onTrue(fordward);
-        driverController.b().onTrue(grab);
+        driverController.a().onTrue(forwardCommand);
+        driverController.b().onTrue(grabCommand);
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
-        driverController.x().toggleOnTrue(stopYArm);
+        driverController.x().toggleOnTrue(stopArmCommand);
+        // TODO: Find a button that is available for the balance command.
     }
 }

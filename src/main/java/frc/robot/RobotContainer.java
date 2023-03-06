@@ -49,10 +49,14 @@ public class RobotContainer {
      * https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers
      */
     private void configureButtonBindings() {
-        driverController.a().onTrue(balanceCommand);
+        driverController.y().toggleOnTrue(balanceCommand);
+        driverController.a().onTrue(fordward);
         driverController.b().onTrue(grab);
         driverController.povUp().onTrue(upCommand);
         driverController.povDown().onTrue(downCommand);
         driverController.x().toggleOnTrue(stopYArm);
+
+        driverController.rightTrigger().toggleOnTrue(stopYArm);
+
     }
 }

@@ -23,8 +23,8 @@ public class ArmSubsystem extends SubsystemBase {
     
     public ArmSubsystem() {
         yControllerGroup.setInverted(true);
-        armDoubleSolenoid.set(kReverse);
-        grabDoubleSolenoid.set(kReverse);
+        armDoubleSolenoid.set(kForward);
+        grabDoubleSolenoid.set(kForward);
     }
 
     /**

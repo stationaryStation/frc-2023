@@ -32,9 +32,17 @@ public class Balance extends CommandBase {
 
     SmartDashboard.putNumber("pid output", -1 * pid.calculate(gSubsystem.getAngle(), 0));
 
-    dSubsystem.arcadeDrive(-1 * pid.calculate(gSubsystem.getAngle(), 0),0);
+    double speed = -1 * pid.calculate(gSubsystem.getAngle(), 0);
+    double angle = gSubsystem.getAngle();
+    if (angle < 1 && angle > -1){
+      speed = 0;
+    }
+
+    dSubsystem.arcadeDrive(speed,0);
+
 
     SmartDashboard.putNumber("ang", gSubsystem.getAngle());
+    SmartDashboard.putNumber("var ang", angle);
 
   }
 

@@ -9,6 +9,7 @@ import frc.robot.commands.goUp;
 import frc.robot.commands.toggleX;
 import frc.robot.commands.toggleGrab;
 import frc.robot.commands.stopYArmMovement;
+import frc.robot.commands.ResetGyro;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
@@ -29,6 +30,7 @@ public class RobotContainer {
     private toggleX fordward = new toggleX(arm);
     private toggleGrab grab = new toggleGrab(arm);
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
+    private ResetGyro resetGy = new ResetGyro(gyroscope);
 
     /**
      * The container for the robot. Contains subsystems, controllers devices and
@@ -56,7 +58,6 @@ public class RobotContainer {
         driverController.povDown().onTrue(downCommand);
         driverController.x().toggleOnTrue(stopYArm);
 
-        driverController.rightTrigger().toggleOnTrue(stopYArm);
-
+        driverController.rightTrigger().toggleOnTrue(resetGy);
     }
 }

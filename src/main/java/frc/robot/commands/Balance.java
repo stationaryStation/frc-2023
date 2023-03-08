@@ -10,7 +10,8 @@ import edu.wpi.first.math.controller.PIDController;
 public class Balance extends CommandBase {
   private final DriveSubsystem dSubsystem;
   private final GyroSubsystem gSubsystem;
-  private final PIDController pid = new PIDController(0.1, 0.04, 0);
+  private final PIDController pid = new PIDController(0.1, 0.004, 0);
+  private boolean reset_flag = false;
 
   /**
    * Initialize Balance Command
@@ -25,24 +26,30 @@ public class Balance extends CommandBase {
     pid.enableContinuousInput(-180, 180);
   }
 
+  @Override
+  public void initialize(){
+    pid.reset();
+    reset_flag = false;
+  }
   // Everything inside of this execute function will run until it is finished or
   // when the command ends.
   @Override
   public void execute() {
-
-    SmartDashboard.putNumber("pid output", -1 * pid.calculate(gSubsystem.getAngle(), 0));
-
-    double speed = -1 * pid.calculate(gSubsystem.getAngle(), 0);
-    double angle = gSubsystem.getAngle();
-    if (angle < 1 && angle > -1){
-      speed = 0;
+    if (reset_flag == false){
+      // gSubsystem.reset();
+      reset_flag = true;
     }
+
+    SmartDashboard.putNumber("pid output",pid.calculate(gSubsystem.getAngle(), 0));
+
+    double speed = pid.calculate(gSubsystem.getAngle(), 0);
+    double angle = gSubsystem.getAngle();
+
 
     dSubsystem.arcadeDrive(speed,0);
 
 
     SmartDashboard.putNumber("ang", gSubsystem.getAngle());
-    SmartDashboard.putNumber("var ang", angle);
 
   }
 

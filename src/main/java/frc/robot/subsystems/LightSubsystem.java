@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LightSubsystem extends SubsystemBase {
-    private final Relay Red = new Relay(7);
-    private final Relay Green = new Relay(8);
-    private final Relay Blue = new Relay(9);
+    private final Relay Red = new Relay(1);
+    private final Relay Green = new Relay(2);
+    private final Relay Blue = new Relay(3);
 
     /**
      * Initialize the Light Subsystem

@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import frc.robot.Constants.DriverContstants;
 import frc.robot.commands.Balance;
 import frc.robot.commands.goDown;
@@ -15,6 +16,8 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 
 public class RobotContainer {
+    private final SlewRateLimiter acelLimiter = new SlewRateLimiter(1.3);
+
     // Initialize robot subsytems
     private final DriveSubsystem robotDrivetrain = new DriveSubsystem();
     private final GyroSubsystem gyroscope = new GyroSubsystem();
@@ -41,7 +44,7 @@ public class RobotContainer {
         configureButtonBindings();
 
         robotDrivetrain.setDefaultCommand(Commands.run(
-                () -> robotDrivetrain.arcadeDrive(-driverController.getLeftY(), -driverController.getLeftX()),
+                () -> robotDrivetrain.arcadeDrive(-acelLimiter.calculate(driverController.getLeftY()), -driverController.getLeftX()),
                 robotDrivetrain));
     }
 

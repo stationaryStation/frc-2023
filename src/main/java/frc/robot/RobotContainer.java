@@ -2,8 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.math.filter.SlewRateLimiter;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriverContstants;
+import frc.robot.commands.AutoBalance;
 import frc.robot.commands.Balance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
@@ -34,6 +38,10 @@ public class RobotContainer {
     private toggleGrab grab = new toggleGrab(arm);
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
     private ResetGyro resetGy = new ResetGyro(gyroscope);
+    private final Command m_complexAuto = new AutoBalance(robotDrivetrain, arm, gyroscope);
+
+    // A chooser for autonomous commands
+    SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     /**
      * The container for the robot. Contains subsystems, controllers devices and
@@ -46,6 +54,17 @@ public class RobotContainer {
         robotDrivetrain.setDefaultCommand(Commands.run(
                 () -> robotDrivetrain.arcadeDrive(-acelLimiter.calculate(driverController.getLeftY()), -driverController.getLeftX()),
                 robotDrivetrain));
+
+        
+        // Add commands to the autonomous command chooser
+        m_chooser.setDefaultOption("Simple Auto", m_complexAuto);
+        m_chooser.addOption("Complex Auto", m_complexAuto);
+            // Put the chooser on the dashboard
+        Shuffleboard.getTab("Autonomous").add(m_chooser);
+        // Put subsystems to dashboard.
+        Shuffleboard.getTab("Drivetrain").add(robotDrivetrain);
+        Shuffleboard.getTab("HatchSubsystem").add(arm);
+
     }
 
     /**
@@ -62,5 +81,14 @@ public class RobotContainer {
         driverController.x().toggleOnTrue(stopYArm);
 
         driverController.rightTrigger().toggleOnTrue(resetGy);
+    }
+
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        return m_chooser.getSelected();
     }
 }

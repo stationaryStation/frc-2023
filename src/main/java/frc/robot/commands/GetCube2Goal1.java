@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.Constants.ArmConstants;
+import frc.robot.Constants.GetCube2Goal1Constants;
 
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
@@ -15,10 +16,6 @@ public class GetCube2Goal1 extends CommandBase {
 
   private Timer timer = new Timer();
   private Timer armUpDownTimer = new Timer();
-  private final int backwardTime1 = 2;
-  private final int releaseTime = 2;
-
-  private final int rotateTime1 = 1;
 
   private int step = 0;
   private double speed = 0;
@@ -54,30 +51,30 @@ public class GetCube2Goal1 extends CommandBase {
     
       
     if(step == 0){
-      speed = 0.7;
+      speed = GetCube2Goal1Constants.speed1;
       aSubsystem.moveY(ArmConstants.upVel);
       armUpDownTimer.start();
       timer.start();
       step+=1;
     }
-    if (timer.hasElapsed(backwardTime1) == true && step == 1){
+    if (timer.hasElapsed(GetCube2Goal1Constants.backwardTime1) == true && step == 1){
       speed = 0;
       rspeed = 0;
       step+=1;
     }
-    if (step == 2 && armUpDownTimer.hasElapsed(7)){
-      rspeed = 0.5;
+    if (step == 2 && armUpDownTimer.hasElapsed(GetCube2Goal1Constants.armUpTime)){
+      rspeed = GetCube2Goal1Constants.rspeed1;
       timer.reset();
       step+=1;
     }
-    if (step == 3 && timer.hasElapsed(rotateTime1) == true){
+    if (step == 3 && timer.hasElapsed(GetCube2Goal1Constants.rotateTime1) == true){
       step+=1;
       rspeed = 0;
       aSubsystem.setGrabberPos(false);
       timer.reset();
     }
-    if (step  == 4 && timer.hasElapsed(releaseTime) == true){
-      speed = -0.7;
+    if (step  == 4 && timer.hasElapsed(GetCube2Goal1Constants.releaseTime1) == true){
+      speed = GetCube2Goal1Constants.speed2;
       timer.restart();
       aSubsystem.moveY(ArmConstants.downVel);
       armUpDownTimer.reset();
@@ -87,7 +84,7 @@ public class GetCube2Goal1 extends CommandBase {
       speed = 0;
       step += 1;
     }
-    if (step == 6 && armUpDownTimer.hasElapsed(20)){
+    if (step == 6 && armUpDownTimer.hasElapsed(GetCube2Goal1Constants.armDown)){
       aSubsystem.moveY(0);
       armUpDownTimer.reset();
       step+=1;

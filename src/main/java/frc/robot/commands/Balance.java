@@ -6,12 +6,12 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.math.controller.PIDController;
+import frc.robot.Constants.BalancePIDConstatants;
 
 public class Balance extends CommandBase {
   private final DriveSubsystem dSubsystem;
   private final GyroSubsystem gSubsystem;
-  private final PIDController pid = new PIDController(0.1, 0.004, 0);
-  private boolean reset_flag = false;
+  private final PIDController pid = new PIDController(BalancePIDConstatants.p, BalancePIDConstatants.i, BalancePIDConstatants.d);
 
   /**
    * Initialize Balance Command
@@ -29,16 +29,11 @@ public class Balance extends CommandBase {
   @Override
   public void initialize(){
     pid.reset();
-    reset_flag = false;
   }
   // Everything inside of this execute function will run until it is finished or
   // when the command ends.
   @Override
   public void execute() {
-    if (reset_flag == false){
-      // gSubsystem.reset();
-      reset_flag = true;
-    }
 
     SmartDashboard.putNumber("pid output",pid.calculate(gSubsystem.getAngle(), 0));
 

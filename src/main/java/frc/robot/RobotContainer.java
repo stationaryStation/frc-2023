@@ -8,8 +8,9 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriverContstants;
 import frc.robot.commands.AutoBalance;
-import frc.robot.commands.GetCone2Goal0;
+import frc.robot.commands.GetCube2Goal0;
 import frc.robot.commands.GetCube2Goal1;
+import frc.robot.commands.GetCone2Goal0;
 import frc.robot.commands.Balance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
@@ -41,7 +42,7 @@ public class RobotContainer {
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
     private ResetGyro resetGy = new ResetGyro(gyroscope);
     private final Command m_complexAuto = new AutoBalance(robotDrivetrain, arm, gyroscope);
-    private final Command cubeTo0 = new GetCone2Goal0(robotDrivetrain, arm);
+    private final Command cubeTo0 = new GetCube2Goal0(robotDrivetrain, arm);
     private final Command cubeTo1 = new GetCube2Goal1(robotDrivetrain, arm);
     private final Command coneTo0 = new GetCone2Goal0(robotDrivetrain, arm);
 

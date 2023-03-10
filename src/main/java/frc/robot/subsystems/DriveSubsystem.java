@@ -29,8 +29,10 @@ public class DriveSubsystem extends SubsystemBase {
         drivetrain.setExpiration(.1);
         drivetrain.feed();
 
-        // Add velocity limit
-        drivetrain.setMaxOutput(0.7);
+        /*
+        *DO NOT change power here, insted go to frc.robot.Constants.DriveConstants
+        */
+        drivetrain.setMaxOutput(1*DriveConstants.powerMultiplier); 
     }
 
     /**

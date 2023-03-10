@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.Constants.GetToRampConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
@@ -52,15 +53,15 @@ public class getToRamp extends CommandBase {
     SmartDashboard.putNumber("gyro", gSubsystem.getRawAngle());
     
     if(step == 0){
-      speed = 0.7;
+      speed = GetToRampConstants.speed1;
       findRampTimeOut.start();
       step+=1;
     }
     if (step == 1){
-      if (findRampTimeOut.hasElapsed(15)){
+      if (findRampTimeOut.hasElapsed(GetToRampConstants.findRampTimeOut)){
         speed = 0;
         step = -1;
-      } else if(gSubsystem.getRawAngle() > 10 || gSubsystem.getRawAngle() < -10){
+      } else if(gSubsystem.getRawAngle() > GetToRampConstants.triggerAngle || gSubsystem.getRawAngle() < -GetToRampConstants.triggerAngle){
           speed = 0;
           step+=1;
         }
@@ -69,7 +70,7 @@ public class getToRamp extends CommandBase {
         step+=1;
         timer.reset();
       }
-      if (step == 3 && timer.hasElapsed(2)){
+      if (step == 3 && timer.hasElapsed(GetToRampConstants.waitAfterOnRamp)){
         step +=1;
       }
   }

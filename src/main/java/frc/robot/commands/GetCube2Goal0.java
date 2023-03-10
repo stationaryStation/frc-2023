@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.Constants.GetCube2Goal0Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.*;
@@ -12,10 +13,6 @@ public class GetCube2Goal0 extends CommandBase {
   private final ArmSubsystem aSubsystem;
 
   private Timer timer = new Timer();
-  private final int fordwardTime1 = 2;
-  private final int releaseTime = 2;
-
-  private final int rotateTime1 = 1;
 
   private int step = 0;
   private double speed = 0;
@@ -39,8 +36,7 @@ public class GetCube2Goal0 extends CommandBase {
     timer.start();
   }
 
-  // Everything inside of this execute function will run until it is finished or
-  // when the command ends.
+
   @Override
   public void execute() {
     dSubsystem.arcadeDrive(speed, rspeed);
@@ -52,17 +48,17 @@ public class GetCube2Goal0 extends CommandBase {
       speed = 0.7;
       step+=1;
     }
-    if (timer.advanceIfElapsed(fordwardTime1) == true && step == 1){
+    if (timer.advanceIfElapsed(GetCube2Goal0Constants.fordwardTime1) == true && step == 1){
       speed = 0;
       rspeed = 0;
       step+=1;
     }
     if (step == 2){
-      rspeed = 0.5;
+      rspeed = GetCube2Goal0Constants.rspeed1;
       timer.reset();
       step+=1;
     }
-    if (step == 3 && timer.advanceIfElapsed(rotateTime1) == true){
+    if (step == 3 && timer.advanceIfElapsed(GetCube2Goal0Constants.rotateTime1) == true){
       step+=1;
       rspeed = 0;
     }
@@ -71,7 +67,7 @@ public class GetCube2Goal0 extends CommandBase {
       step+=1;
       timer.reset();
     }
-    if (step  == 5 && timer.advanceIfElapsed(releaseTime) == true){
+    if (step  == 5 && timer.advanceIfElapsed(GetCube2Goal0Constants.releaseTime1) == true){
       step+=1;
     }
 

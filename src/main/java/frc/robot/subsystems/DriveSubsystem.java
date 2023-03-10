@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
+
     // Left side motors
     private final MotorControllerGroup leftMotors = new MotorControllerGroup(
             new WPI_TalonSRX(DriveConstants.frontLeftPort),
@@ -29,7 +30,7 @@ public class DriveSubsystem extends SubsystemBase {
         drivetrain.feed();
 
         // Add velocity limit
-        drivetrain.setMaxOutput(.3);
+        drivetrain.setMaxOutput(0.7);
     }
 
     /**

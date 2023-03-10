@@ -32,6 +32,9 @@ public class GyroSubsystem extends SubsystemBase {
         }
         return angle;
     }
+    public double getRawAngle(){
+        return gyroscope.getAngle();
+    }
     public void reset(){
         gyroscope.reset();
     }

@@ -7,7 +7,6 @@ import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class getToRamp extends CommandBase {
   private final DriveSubsystem dSubsystem;
@@ -16,10 +15,6 @@ public class getToRamp extends CommandBase {
 
   private Timer timer = new Timer();
   private Timer findRampTimeOut = new Timer();
-  private final int fordwardTime1 = 2;
-  private final int releaseTime = 2;
-
-  private final int rotateTime1 = 1;
 
   private int step = 0;
   private double speed = 0;

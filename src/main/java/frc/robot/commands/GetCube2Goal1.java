@@ -92,10 +92,6 @@ public class GetCube2Goal1 extends CommandBase {
       armUpDownTimer.reset();
       step+=1;
     }
-    if (step  == 7 && timer.hasElapsed(10)){
-      step+=1;
-      // aSubsystem.moveY(0);
-    }
 
   }
 

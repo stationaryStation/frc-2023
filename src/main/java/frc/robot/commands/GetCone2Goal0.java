@@ -39,8 +39,7 @@ public class GetCone2Goal0 extends CommandBase {
     timer.start();
   }
 
-  // Everything inside of this execute function will run until it is finished or
-  // when the command ends.
+
   @Override
   public void execute() {
     dSubsystem.arcadeDrive(speed, rspeed);

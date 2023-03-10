@@ -38,15 +38,35 @@ public class ArmSubsystem extends SubsystemBase {
      * Moves the arm horizontally, true is forward, false is backwards
      * @param vel
      */
+
+    public void setXPos(boolean pos){
+        if (pos == true){
+            armDoubleSolenoid.set(kReverse);
+        } else {
+            armDoubleSolenoid.set(kForward);
+        }
+    } 
+
     public void toggleX() {
         armDoubleSolenoid.toggle();
     }
+
+
 
     /**
      * Toggles the claw movement
      */
     public void toggleGrab() {
         grabDoubleSolenoid.toggle();
+    }
+
+
+    public void setGrabberPos(boolean pos){
+        if (pos == false){
+            grabDoubleSolenoid.set(kReverse);
+        } else {
+            grabDoubleSolenoid.set(kForward);
+        }
     }
 
     /**

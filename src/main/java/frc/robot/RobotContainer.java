@@ -8,6 +8,8 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriverContstants;
 import frc.robot.commands.AutoBalance;
+import frc.robot.commands.GetCone2Goal0;
+import frc.robot.commands.GetCube2Goal1;
 import frc.robot.commands.Balance;
 import frc.robot.commands.goDown;
 import frc.robot.commands.goUp;
@@ -39,7 +41,11 @@ public class RobotContainer {
     private stopYArmMovement stopYArm = new stopYArmMovement(arm);
     private ResetGyro resetGy = new ResetGyro(gyroscope);
     private final Command m_complexAuto = new AutoBalance(robotDrivetrain, arm, gyroscope);
+    private final Command cubeTo0 = new GetCone2Goal0(robotDrivetrain, arm);
+    private final Command cubeTo1 = new GetCube2Goal1(robotDrivetrain, arm);
+    private final Command coneTo0 = new GetCone2Goal0(robotDrivetrain, arm);
 
+    
     // A chooser for autonomous commands
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -57,8 +63,10 @@ public class RobotContainer {
 
         
         // Add commands to the autonomous command chooser
-        m_chooser.setDefaultOption("Simple Auto", m_complexAuto);
-        m_chooser.addOption("Complex Auto", m_complexAuto);
+        m_chooser.setDefaultOption("AutoBalance", m_complexAuto);
+        m_chooser.addOption("cube on fisrt", cubeTo0);
+        m_chooser.addOption("cone on fisrt", coneTo0);
+        m_chooser.addOption("cube on second", cubeTo1);
             // Put the chooser on the dashboard
         Shuffleboard.getTab("Autonomous").add(m_chooser);
         // Put subsystems to dashboard.

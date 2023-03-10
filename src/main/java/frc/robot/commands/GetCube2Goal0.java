@@ -79,6 +79,6 @@ public class GetCube2Goal0 extends CommandBase {
 
   @Override
   public boolean isFinished() {
-      return timer.get() > 12;
+      return false;
   }
 }

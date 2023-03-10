@@ -12,7 +12,7 @@ public class GetCone2Goal0 extends CommandBase {
   private final ArmSubsystem aSubsystem;
 
   private Timer timer = new Timer();
-  private final int backwardTime1 = 2;
+  private final int fordwardTime1 = 2;
   private final int releaseTime = 2;
 
   private final int rotateTime1 = 1;
@@ -49,10 +49,10 @@ public class GetCone2Goal0 extends CommandBase {
     SmartDashboard.putNumber("step", step);
     
     if(step == 0){
-      speed = -0.7;
+      speed = 0.7;
       step+=1;
     }
-    if (timer.advanceIfElapsed(backwardTime1) == true && step == 1){
+    if (timer.advanceIfElapsed(fordwardTime1) == true && step == 1){
       speed = 0;
       rspeed = 0;
       step+=1;
@@ -79,6 +79,6 @@ public class GetCone2Goal0 extends CommandBase {
 
   @Override
   public boolean isFinished() {
-      return timer.get() > 12;
+      return false;
   }
 }
